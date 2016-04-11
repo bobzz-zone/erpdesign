@@ -52,18 +52,6 @@ frappe.ui.form.Controller.extend({
 		}
 	},
 
-	setup_sms: function() {
-		var me = this;
-		if(this.frm.doc.docstatus===1 && !in_list(["Lost", "Stopped"], this.frm.doc.status)
-			&& this.frm.doctype != "Purchase Invoice") {
-			this.frm.page.add_menu_item(__('Send SMS'), function() { me.send_sms(); });
-		}
-	},
-
-	send_sms: function() {
-		frappe.require("assets/erpnext/js/sms_manager.js");
-		var sms_man = new SMSManager(this.frm.doc);
-	},
 
 	make_show_payments_btn: function() {
 		var me = this;
@@ -816,12 +804,7 @@ frappe.ui.form.Controller.extend({
 			item.gross_profit = flt(((rate - item.valuation_rate) * item.qty), precision("amount", item));
 		}
 	},
-	setup_warehouse_query: function() {
-		var me = this;
-		erpnext.queries.setup_queries(this.frm, "Warehouse", function() {
-			return erpnext.queries.warehouse(me.frm.doc);
-		});
-	},
+
 
 	show_stock_ledger: function() {
 		var me = this;
@@ -1151,18 +1134,12 @@ frappe.ui.form.Controller.extend({
 		this.calculate_taxes_and_totals();
 	},
 
-	set_from_product_bundle: function() {
-		var me = this;
-		this.frm.add_custom_button(__("Product Bundle"), function() {
-			erpnext.buying.get_items_from_product_bundle(me.frm);
-		}, __("Get items from"));
-	},
-	
+
 	company: function() {
 		var me = this;
 		if (frappe.meta.get_docfield(this.frm.doctype, "shipping_address") 
 			&& !this.frm.doc.shipping_address) {
-				erpnext.utils.get_shipping_address(this.frm)
+				get_shipping_address(this.frm)
 		}
 
 		var company_doc = frappe.get_doc(":Company", me.frm.doc.company);
@@ -1190,7 +1167,7 @@ frappe.ui.form.Controller.extend({
 			}
 		});
 		
-		erpnext.utils.get_address_display(this.frm, "shipping_address", 
+		get_address_display(this.frm, "shipping_address", 
 			"shipping_address_display", is_your_company_address=true)
 	},
 	calculate_taxes_and_totals: function(update_paid_amount) {
@@ -1737,7 +1714,7 @@ frappe.ui.form.Controller.extend({
 cur_frm.add_fetch('project', 'cost_center', 'cost_center');
 
 // for backward compatibility: combine new and previous states
-$.extend(cur_frm.cscript, new erpnext.buying.SupplierQuotationController({frm: cur_frm}));
+//$.extend(cur_frm.cscript, new erpnext.buying.SupplierQuotationController({frm: cur_frm}));
 
 cur_frm.cscript.uom = function(doc, cdt, cdn) {
 	

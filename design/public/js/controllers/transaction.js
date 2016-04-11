@@ -1,11 +1,11 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-frappe.provide("erpnext");
-frappe.require("assets/erpnext/js/controllers/taxes_and_totals.js");
-frappe.require("assets/erpnext/js/utils.js");
+frappe.provide("design");
+frappe.require("assets/design/js/controllers/taxes_and_totals.js");
+frappe.require("assets/design/js/utils.js");
 
-erpnext.TransactionController = erpnext.taxes_and_totals.extend({
+design.TransactionController = design.taxes_and_totals.extend({
 	onload: function() {
 		var me = this;
 		if(this.frm.doc.__islocal) {
@@ -86,11 +86,11 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 	},
 
 	refresh: function() {
-		erpnext.toggle_naming_series();
-		erpnext.hide_company();
+		design.toggle_naming_series();
+		design.hide_company();
 		this.show_item_wise_taxes();
 		this.set_dynamic_labels();
-		erpnext.pos.make_pos_btn(this.frm);
+		design.pos.make_pos_btn(this.frm);
 		this.setup_sms();
 		this.make_show_payments_btn();
 	},
@@ -102,7 +102,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 
 		if(taxes_and_charges_field) {
 			return frappe.call({
-				method: "erpnext.controllers.accounts_controller.get_default_taxes_and_charges",
+				method: "design.controllers.accounts_controller.get_default_taxes_and_charges",
 				args: {
 					"master_doctype": taxes_and_charges_field.options
 				},
@@ -162,7 +162,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 				cur_frm.fields_dict["items"].grid.grid_rows[item.idx - 1].remove();
 			} else {
 				return this.frm.call({
-					method: "erpnext.stock.get_item_details.get_item_details",
+					method: "design.stock.get_item_details.get_item_details",
 					child: item,
 					args: {
 						args: {
@@ -284,7 +284,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 				var party = me.frm.doc[frappe.model.scrub(party_type)];
 				if(party) {
 					return frappe.call({
-						method: "erpnext.accounts.party.get_party_account",
+						method: "design.accounts.party.get_party_account",
 						args: {
 							company: me.frm.doc.company,
 							party_type: party_type,
@@ -311,7 +311,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 		set_party_account(set_pricing);
 
 		if(this.frm.doc.company) {
-			erpnext.last_selected_company = this.frm.doc.company;
+			design.last_selected_company = this.frm.doc.company;
 		}
 	},
 
@@ -329,7 +329,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 			if ((this.frm.doc.doctype == "Sales Invoice" && this.frm.doc.customer) ||
 				(this.frm.doc.doctype == "Purchase Invoice" && this.frm.doc.supplier)) {
 				return frappe.call({
-					method: "erpnext.accounts.party.get_due_date",
+					method: "design.accounts.party.get_due_date",
 					args: {
 						"posting_date": me.frm.doc.posting_date,
 						"party_type": me.frm.doc.doctype == "Sales Invoice" ? "Customer" : "Supplier",
@@ -347,11 +347,11 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 	},
 
 	get_company_currency: function() {
-		return erpnext.get_currency(this.frm.doc.company);
+		return design.get_currency(this.frm.doc.company);
 	},
 
 	contact_person: function() {
-		erpnext.utils.get_contact_details(this.frm);
+		design.utils.get_contact_details(this.frm);
 	},
 
 	currency: function() {
@@ -391,7 +391,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 
 	get_exchange_rate: function(from_currency, to_currency, callback) {
 		return frappe.call({
-			method: "erpnext.setup.utils.get_exchange_rate",
+			method: "design.setup.utils.get_exchange_rate",
 			args: {
 				from_currency: from_currency,
 				to_currency: to_currency
@@ -593,7 +593,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 		}
 
 		return this.frm.call({
-			method: "erpnext.accounts.doctype.pricing_rule.pricing_rule.apply_pricing_rule",
+			method: "design.accounts.doctype.pricing_rule.pricing_rule.apply_pricing_rule",
 			args: {	args: args },
 			callback: function(r) {
 				if (!r.exc && r.message) {
@@ -690,7 +690,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 		}
 
 		return this.frm.call({
-			method: "erpnext.stock.get_item_details.apply_price_list",
+			method: "design.stock.get_item_details.apply_price_list",
 			args: {	args: args },
 			callback: function(r) {
 				if (!r.exc) {
@@ -805,7 +805,7 @@ erpnext.TransactionController = erpnext.taxes_and_totals.extend({
 		var me = this;
 		if(this.frm.doc.taxes_and_charges) {
 			return this.frm.call({
-				method: "erpnext.controllers.accounts_controller.get_taxes_and_charges",
+				method: "design.controllers.accounts_controller.get_taxes_and_charges",
 				args: {
 					"master_doctype": frappe.meta.get_docfield(this.frm.doc.doctype, "taxes_and_charges",
 						this.frm.doc.name).options,

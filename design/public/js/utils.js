@@ -1,9 +1,9 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
-frappe.provide("erpnext");
-frappe.provide("erpnext.utils");
+frappe.provide("design");
+frappe.provide("design.utils");
 
-$.extend(erpnext, {
+$.extend(design, {
 	get_currency: function(company) {
 		if(!company && cur_frm)
 			company = cur_frm.doc.company;
@@ -25,8 +25,8 @@ $.extend(erpnext, {
 			if(companies.length === 1) {
 				if(!cur_frm.doc.company) cur_frm.set_value("company", companies[0]);
 				cur_frm.toggle_display("company", false);
-			} else if(erpnext.last_selected_company) {
-				if(!cur_frm.doc.company) cur_frm.set_value("company", erpnext.last_selected_company);
+			} else if(design.last_selected_company) {
+				if(!cur_frm.doc.company) cur_frm.set_value("company", design.last_selected_company);
 			}
 		}
 	},
@@ -81,7 +81,7 @@ $.extend(erpnext, {
 });
 
 
-$.extend(erpnext.utils, {
+$.extend(design.utils, {
 	clear_address_and_contact: function(frm) {
 		$(frm.fields_dict['address_html'].wrapper).html("");
 		frm.fields_dict['contact_html'] && $(frm.fields_dict['contact_html'].wrapper).html("");

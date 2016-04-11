@@ -22,11 +22,11 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 	},
 
 	refresh: function() {
-		toggle_naming_series();
-		hide_company();
+		this.toggle_naming_series();
+		this.hide_company();
 		this.show_item_wise_taxes();
 		this.set_dynamic_labels();
-		pos.make_pos_btn(this.frm);
+		this.pos.make_pos_btn(this.frm);
 		this.make_show_payments_btn();
 	},
 
@@ -231,7 +231,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 
 		if (this.frm.doc.posting_date) var date = this.frm.doc.posting_date;
 		else var date = this.frm.doc.transaction_date;
-		set_party_account(set_pricing);
+		this.set_party_account(set_pricing);
 
 		if(this.frm.doc.company) {
 			last_selected_company = this.frm.doc.company;
@@ -899,10 +899,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 			});
 		}
 		this.setup_queries();
-		// warehouse query if company
-		if (this.frm.fields_dict.company) {
-			this.setup_warehouse_query();
-		}
+		
 	},
 	clear_address_and_contact: function(frm) {
 		$(frm.fields_dict['address_html'].wrapper).html("");

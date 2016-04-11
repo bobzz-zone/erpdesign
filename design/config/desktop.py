@@ -17,6 +17,14 @@ def get_data():
                         "icon": "octicon octicon-list-unordered",
                         "type": "module",
                         "label": _("Construction")
+                },
+                {
+                        "module_name": "Procurment",
+                        "color": "Black",
+                        "icon": "octicon octicon-list-unordered",
+                        "type": "module",
+                        "label": _("Procurment")
                 }
+
 
 	]

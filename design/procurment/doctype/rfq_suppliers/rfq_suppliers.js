@@ -1,10 +1,6 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-frappe.provide("design.rfq_suppliers");
-
-cur_frm.cscript.tax_table = "Purchase Taxes and Charges";
-{% include '../../erpnext/erpnext/accounts/doctype/purchase_taxes_and_charges_template/purchase_taxes_and_charges_template.js' %}
 
 frappe.require("assets/design/js/controllers/transaction.js");
 
@@ -27,32 +23,7 @@ design.rfq_suppliers.RFQController = design.TransactionController.extend({
 			});
 		}
 
-		$.each([["supplier", "supplier"],
-			["contact_person", "supplier_filter"],
-			["supplier_address", "supplier_filter"]],
-			function(i, opts) {
-				if(me.frm.fields_dict[opts[0]])
-					me.frm.set_query(opts[0], erpnext.queries[opts[1]]);
-			});
-
-		if(this.frm.fields_dict.supplier) {
-			this.frm.set_query("supplier", function() {
-				return{	query: "erpnext.controllers.queries.supplier_query" }});
-		}
-
-		this.frm.set_query("item_code", "items", function() {
-			if(me.frm.doc.is_subcontracted == "Yes") {
-				 return{
-					query: "erpnext.controllers.queries.item_query",
-					filters:{ 'is_sub_contracted_item': 1 }
-				}
-			} else {
-				return{
-					query: "erpnext.controllers.queries.item_query",
-					filters: { 'is_purchase_item': 1 }
-				}
-			}
-		});
+		
 	},
 
 	refresh: function(doc) {
@@ -64,11 +35,11 @@ design.rfq_suppliers.RFQController = design.TransactionController.extend({
 
 	supplier: function() {
 		var me = this;
-		erpnext.utils.get_party_details(this.frm, null, null, function(){me.apply_pricing_rule()});
+		design.utils.get_party_details(this.frm, null, null, function(){me.apply_pricing_rule()});
 	},
 
 	supplier_address: function() {
-		erpnext.utils.get_address_display(this.frm);
+		design.utils.get_address_display(this.frm);
 	},
 
 	buying_price_list: function() {
@@ -205,25 +176,6 @@ design.rfq_suppliers.RFQController = design.TransactionController.extend({
 });
 
 cur_frm.add_fetch('project', 'cost_center', 'cost_center');
-
-erpnext.buying.get_default_bom = function(frm) {
-	$.each(frm.doc["items"] || [], function(i, d) {
-		if (d.item_code && d.bom === "") {
-			return frappe.call({
-				type: "GET",
-				method: "erpnext.stock.get_item_details.get_default_bom",
-				args: {
-					"item_code": d.item_code,
-				},
-				callback: function(r) {
-					if(r) {
-						frappe.model.set_value(d.doctype, d.name, "bom", r.message);
-					}
-				}
-			})
-		}
-	});
-}
 
 // for backward compatibility: combine new and previous states
 $.extend(cur_frm.cscript, new erpnext.buying.SupplierQuotationController({frm: cur_frm}));

@@ -4,7 +4,7 @@
 
 
 cur_frm.email_field = "contact_email";
-$.extend(cur_frm.cscript, new RFQSuppliers({frm: cur_frm}));
+
 RFQSuppliers=frappe.ui.form.Controller.extend({
 
 	onload_post_render: function() {
@@ -1807,5 +1807,5 @@ frappe.ui.form.on(cur_frm.doctype, "discount_amount", function(frm) {
 
 	frm.cscript.calculate_taxes_and_totals();
 });
-
+$.extend(cur_frm.cscript, new RFQSuppliers({frm: cur_frm}));
 

@@ -5,7 +5,7 @@
 
 cur_frm.email_field = "contact_email";
 
-frappe.ui.form.Controller.extend({
+frappe.ui.form.on('rfq_suppliers',{
 
 	onload_post_render: function() {
 		var me = this;

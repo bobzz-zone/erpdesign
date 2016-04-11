@@ -4,8 +4,8 @@
 
 
 cur_frm.email_field = "contact_email";
-
-frappe.ui.form.on('rfq_suppliers',{
+$.extend(cur_frm.cscript, new RFQSuppliers({frm: cur_frm}));
+RFQSuppliers=frappe.ui.form.Controller.extend({
 
 	onload_post_render: function() {
 		var me = this;
@@ -27,7 +27,6 @@ frappe.ui.form.on('rfq_suppliers',{
 		this.show_item_wise_taxes();
 		this.set_dynamic_labels();
 		pos.make_pos_btn(this.frm);
-		this.setup_sms();
 		this.make_show_payments_btn();
 	},
 

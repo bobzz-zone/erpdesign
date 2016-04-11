@@ -26,7 +26,6 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		this.hide_company();
 		this.show_item_wise_taxes();
 		this.set_dynamic_labels();
-		this.pos.make_pos_btn(this.frm);
 		this.make_show_payments_btn();
 		this.frm.toggle_display("supplier_name",
 			(this.supplier_name && this.frm.doc.supplier_name!==this.frm.doc.supplier));

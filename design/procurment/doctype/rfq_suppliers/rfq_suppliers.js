@@ -28,6 +28,9 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		this.set_dynamic_labels();
 		this.pos.make_pos_btn(this.frm);
 		this.make_show_payments_btn();
+		this.frm.toggle_display("supplier_name",
+			(this.supplier_name && this.frm.doc.supplier_name!==this.frm.doc.supplier));
+
 	},
 
 	apply_default_taxes: function() {
@@ -355,9 +358,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		}
 	},
 
-	qty: function(doc, cdt, cdn) {
-		this.apply_pricing_rule(frappe.get_doc(cdt, cdn), true);
-	},
+	
 
 	set_dynamic_labels: function() {
 		// What TODO? should we make price list system non-mandatory?
@@ -1025,12 +1026,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		
 	},
 
-	refresh: function(doc) {
-		this.frm.toggle_display("supplier_name",
-			(this.supplier_name && this.frm.doc.supplier_name!==this.frm.doc.supplier));
 
-		this._super();
-	},
 
 	supplier: function() {
 		var me = this;
@@ -1080,7 +1076,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 	},
 
 	qty: function(doc, cdt, cdn) {
-		this._super(doc, cdt, cdn);
+		this.apply_pricing_rule(frappe.get_doc(cdt, cdn), true);
 		this.conversion_factor(doc, cdt, cdn);
 	},
 

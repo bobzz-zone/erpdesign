@@ -998,11 +998,11 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 
 	supplier: function() {
 		var me = this;
-		utils.get_party_details(this.frm, null, null, function(){me.apply_pricing_rule()});
+		this.get_party_details(this.frm, null, null, function(){me.apply_pricing_rule()});
 	},
 
 	supplier_address: function() {
-		utils.get_address_display(this.frm);
+		this.get_address_display(this.frm);
 	},
 
 	buying_price_list: function() {

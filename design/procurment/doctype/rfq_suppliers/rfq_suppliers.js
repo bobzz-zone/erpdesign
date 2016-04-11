@@ -6,7 +6,7 @@
 cur_frm.email_field = "contact_email";
 
 RFQSuppliers=frappe.ui.form.Controller.extend({
-	get_party_details = function(frm, method, args, callback) {
+	get_party_details : function(frm, method, args, callback) {
 		if(!method) {
 			method = "erpnext.accounts.party.get_party_details";
 		}
@@ -53,7 +53,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		});
 	},
 
-	get_address_display = function(frm, address_field, display_field, is_your_company_address) {
+	get_address_display : function(frm, address_field, display_field, is_your_company_address) {
 		if(frm.updating_party_details) return;
 
 		if(!address_field) {
@@ -105,8 +105,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		}
 
 	},
-	get_contact_details = function() {
-		var frm=this;
+	get_contact_details : function(frm) {
 		if(frm.updating_party_details) return;
 
 		if(frm.doc["contact_person"]) {

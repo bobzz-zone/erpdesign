@@ -270,11 +270,11 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 	},
 
 	get_company_currency: function() {
-		return get_currency(this.frm.doc.company);
+		return this.get_currency(this.frm.doc.company);
 	},
 
 	contact_person: function() {
-		utils.get_contact_details(this.frm);
+		get_contact_details(this.frm);
 	},
 
 	currency: function() {

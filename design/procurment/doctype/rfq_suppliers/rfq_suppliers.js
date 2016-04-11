@@ -388,7 +388,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 	},
 
 	contact_person: function() {
-		get_contact_details(this.frm);
+		this.get_contact_details(this.frm);
 	},
 
 	currency: function() {

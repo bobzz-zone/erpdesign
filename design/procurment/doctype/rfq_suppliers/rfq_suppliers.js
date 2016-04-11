@@ -39,7 +39,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 
 		if(taxes_and_charges_field) {
 			return frappe.call({
-				method: "controllers.accounts_controller.get_default_taxes_and_charges",
+				method: "erpnext.controllers.accounts_controller.get_default_taxes_and_charges",
 				args: {
 					"master_doctype": taxes_and_charges_field.options
 				},
@@ -728,7 +728,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		var me = this;
 		if(this.frm.doc.taxes_and_charges) {
 			return this.frm.call({
-				method: "controllers.accounts_controller.get_taxes_and_charges",
+				method: "erpnext.controllers.accounts_controller.get_taxes_and_charges",
 				args: {
 					"master_doctype": frappe.meta.get_docfield(this.frm.doc.doctype, "taxes_and_charges",
 						this.frm.doc.name).options,

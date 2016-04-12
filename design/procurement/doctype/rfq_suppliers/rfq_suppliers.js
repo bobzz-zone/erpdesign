@@ -180,8 +180,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 				}, __("View"));
 			}
 		}
-	},
-rek 
+	}, 
 	barcode: function(doc, cdt, cdn) {
 		var d = locals[cdt][cdn];
 		if(d.barcode=="" || d.barcode==null) {
@@ -307,9 +306,9 @@ rek
 				me.frm.script_manager.trigger("currency");
 				me.apply_pricing_rule();
 			}
-		}
+		};
 
-		set_party_account : function(set_pricing) {
+		var set_party_account = function(set_pricing) {
 			if (in_list(["Sales Invoice", "Purchase Invoice"], me.frm.doc.doctype)) {
 				if(me.frm.doc.doctype=="Sales Invoice") {
 					var party_type = "Customer";
@@ -346,7 +345,7 @@ rek
 
 		if (this.frm.doc.posting_date) var date = this.frm.doc.posting_date;
 		else var date = this.frm.doc.transaction_date;
-		this.set_party_account(set_pricing);
+		set_party_account(set_pricing);
 
 		if(this.frm.doc.company) {
 			last_selected_company = this.frm.doc.company;

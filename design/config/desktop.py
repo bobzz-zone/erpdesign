@@ -19,11 +19,11 @@ def get_data():
                         "label": _("Construction")
                 },
                 {
-                        "module_name": "Procurment",
+                        "module_name": "Procurement",
                         "color": "Black",
                         "icon": "octicon octicon-list-unordered",
                         "type": "module",
-                        "label": _("Procurment")
+                        "label": _("Procurement")
                 }
 
 

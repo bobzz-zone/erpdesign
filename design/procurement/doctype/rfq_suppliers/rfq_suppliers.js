@@ -1283,7 +1283,12 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		this._cleanup();
 		this.show_item_wise_taxes();
 	},
-
+	cost_of_labour: function(){
+		this._calculate_taxes_and_totals();
+	},
+	rate: function(){
+		this._calculate_taxes_and_totals();
+	},
 	validate_conversion_rate: function() {
 		this.frm.doc.conversion_rate = flt(this.frm.doc.conversion_rate, precision("conversion_rate"));
 		var conversion_rate_label = frappe.meta.get_label(this.frm.doc.doctype, "conversion_rate",

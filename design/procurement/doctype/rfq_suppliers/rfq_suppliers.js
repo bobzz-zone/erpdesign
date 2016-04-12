@@ -309,7 +309,7 @@ rek
 			}
 		}
 
-		var set_party_account = function(set_pricing) {
+		set_party_account : function(set_pricing) {
 			if (in_list(["Sales Invoice", "Purchase Invoice"], me.frm.doc.doctype)) {
 				if(me.frm.doc.doctype=="Sales Invoice") {
 					var party_type = "Customer";

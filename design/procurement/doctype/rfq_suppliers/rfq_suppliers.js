@@ -229,7 +229,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 
 					callback: function(r) {
 						if(!r.exc) {
-							this.price_list_rate(doc, cdt, cdn);
+							me.price_list_rate(doc, cdt, cdn);
 							//me.frm.script_manager.trigger("price_list_rate", cdt, cdn);
 						}
 					}

@@ -181,7 +181,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 			}
 		}
 	},
-
+rek 
 	barcode: function(doc, cdt, cdn) {
 		var d = locals[cdt][cdn];
 		if(d.barcode=="" || d.barcode==null) {
@@ -322,7 +322,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 				var party = me.frm.doc[frappe.model.scrub(party_type)];
 				if(party) {
 					return frappe.call({
-						method: "accounts.party.get_party_account",
+						method: "erpnext.accounts.party.get_party_account",
 						args: {
 							company: me.frm.doc.company,
 							party_type: party_type,
@@ -367,7 +367,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 			if ((this.frm.doc.doctype == "Sales Invoice" && this.frm.doc.customer) ||
 				(this.frm.doc.doctype == "Purchase Invoice" && this.frm.doc.supplier)) {
 				return frappe.call({
-					method: "accounts.party.get_due_date",
+					method: "erpnext.accounts.party.get_due_date",
 					args: {
 						"posting_date": me.frm.doc.posting_date,
 						"party_type": me.frm.doc.doctype == "Sales Invoice" ? "Customer" : "Supplier",
@@ -629,7 +629,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		}
 
 		return this.frm.call({
-			method: "accounts.doctype.pricing_rule.pricing_rule.apply_pricing_rule",
+			method: "erpnext.accounts.doctype.pricing_rule.pricing_rule.apply_pricing_rule",
 			args: {	args: args },
 			callback: function(r) {
 				if (!r.exc && r.message) {

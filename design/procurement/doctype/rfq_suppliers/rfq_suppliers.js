@@ -1542,14 +1542,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		this._cleanup();
 		this.show_item_wise_taxes();
 	},
-	cost_of_labour: function(doc, cdt, cdn){
-		var me = this;
-		me._calculate_taxes_and_totals();
-	},
-	rate: function(doc, cdt, cdn){
-		var me = this;
-		me._calculate_taxes_and_totals();
-	},
+
 	validate_conversion_rate: function() {
 		this.frm.doc.conversion_rate = flt(this.frm.doc.conversion_rate, precision("conversion_rate"));
 		var conversion_rate_label = frappe.meta.get_label(this.frm.doc.doctype, "conversion_rate",
@@ -2079,7 +2072,7 @@ cur_frm.fields_dict['contact_person'].get_query = function(doc, cdt, cdn) {
 	}
 }
 
-frappe.ui.form.on(cur_frm.doctype + " Item", "rate", function(frm, cdt, cdn) {
+frappe.ui.form.on("Estimation Item", "rate", function(frm, cdt, cdn) {
 	var item = frappe.get_doc(cdt, cdn);
 	frappe.model.round_floats_in(item, ["rate", "price_list_rate"]);
 
@@ -2091,7 +2084,21 @@ frappe.ui.form.on(cur_frm.doctype + " Item", "rate", function(frm, cdt, cdn) {
 	
 	cur_frm.cscript.set_gross_profit(item);
 	cur_frm.cscript.calculate_taxes_and_totals();
-})
+});
+
+frappe.ui.form.on("Estimation Item", "cost_of_labour", function(frm, cdt, cdn) {
+	var item = frappe.get_doc(cdt, cdn);
+	frappe.model.round_floats_in(item, ["rate", "price_list_rate"]);
+
+	if(item.price_list_rate) {
+		item.discount_percentage = flt((1 - item.rate / item.price_list_rate) * 100.0, precision("discount_percentage", item));
+	} else {
+		item.discount_percentage = 0.0;
+	}
+	
+	cur_frm.cscript.set_gross_profit(item);
+	cur_frm.cscript.calculate_taxes_and_totals();
+});
 
 frappe.ui.form.on(cur_frm.cscript.tax_table, "rate", function(frm, cdt, cdn) {
 	cur_frm.cscript.calculate_taxes_and_totals();

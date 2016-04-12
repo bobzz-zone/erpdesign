@@ -230,7 +230,8 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 
 					callback: function(r) {
 						if(!r.exc) {
-							me.frm.script_manager.trigger("price_list_rate", cdt, cdn);
+							this.price_list_rate(doc, cdt, cdn);
+							//me.frm.script_manager.trigger("price_list_rate", cdt, cdn);
 						}
 					}
 				});
@@ -1249,17 +1250,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		if (frappe.meta.get_docfield(this.frm.doc.doctype, "discount_amount"))
 			this.apply_discount_amount();
 
-		// Advance calculation applicable to Sales /Purchase Invoice
-		if(in_list(["Sales Invoice", "Purchase Invoice"], this.frm.doc.doctype)
-			 && this.frm.doc.docstatus < 2 && !this.frm.doc.is_return) {
-				 this.calculate_total_advance(update_paid_amount);
-		}
 
-		// Sales person's commission
-		if(in_list(["Quotation", "Sales Order", "Delivery Note", "Sales Invoice"], this.frm.doc.doctype)) {
-			this.calculate_commission();
-			this.calculate_contribution();
-		}
 
 		this.frm.refresh_fields();
 	},
@@ -1308,10 +1299,11 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 				frappe.model.round_floats_in(item);
 				item.net_rate = item.rate;
 				item.amount = flt(item.rate * item.qty, precision("amount", item));
+				item.net_amount = item.amount;
 				if(item.doctype=="Estimation Item"){
 					item.amount=item.amount+item.cost_of_labour;
 				}
-				item.net_amount = item.amount;
+				
 				item.item_tax_amount = 0.0;
 
 				me.set_in_company_currency(item, ["price_list_rate", "rate", "amount", "net_rate", "net_amount"]);

@@ -1543,10 +1543,12 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 		this.show_item_wise_taxes();
 	},
 	cost_of_labour: function(doc, cdt, cdn){
-		this._calculate_taxes_and_totals();
+		var me = this;
+		me._calculate_taxes_and_totals();
 	},
 	rate: function(doc, cdt, cdn){
-		this._calculate_taxes_and_totals();
+		var me = this;
+		me._calculate_taxes_and_totals();
 	},
 	validate_conversion_rate: function() {
 		this.frm.doc.conversion_rate = flt(this.frm.doc.conversion_rate, precision("conversion_rate"));

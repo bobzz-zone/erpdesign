@@ -1103,7 +1103,24 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 			});
 		}
 
-		
+		if(this.frm.fields_dict.supplier) {
+			this.frm.set_query("supplier", function() {
+				return{	query: "erpnext.controllers.queries.supplier_query" }});
+		}
+
+		this.frm.set_query("item_code", "items", function() {
+			if(me.frm.doc.is_subcontracted == "Yes") {
+				 return{
+					query: "erpnext.controllers.queries.item_query",
+					filters:{ 'is_sub_contracted_item': 1 }
+				}
+			} else {
+				return{
+					query: "erpnext.controllers.queries.item_query",
+					filters: { 'is_purchase_item': 1 }
+				}
+			}
+		});
 	},
 
 

@@ -387,7 +387,7 @@ RFQSuppliers=frappe.ui.form.Controller.extend({
 			&& !this.frm.doc.is_pos) {
 				me.calculate_taxes_and_totals();
 		}
-		if(frappe.meta.get_docfield(this.frm.doc.doctype + " Item", "item_code")) {
+		if(frappe.meta.get_docfield("Estimation Item", "item_code")) {
 			cur_frm.get_field("items").grid.set_multiple_add("item_code", "qty");
 		}
 	},

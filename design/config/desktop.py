@@ -7,21 +7,21 @@ def get_data():
 		{
 			"module_name": "Design",
 			"color": "blue",
-			"icon": "octicon octicon-list-unordered",
+			"icon": "octicon octicon-mortar-board",
 			"type": "module",
 			"label": _("Design")
 		},
 		{
                         "module_name": "Construction",
                         "color": "red",
-                        "icon": "octicon octicon-list-unordered",
+                        "icon": "octicon octicon-paintcan",
                         "type": "module",
                         "label": _("Construction")
                 },
                 {
                         "module_name": "Procurement",
                         "color": "Black",
-                        "icon": "octicon octicon-list-unordered",
+                        "icon": "octicon octicon-clippy",
                         "type": "module",
                         "label": _("Procurement")
                 }

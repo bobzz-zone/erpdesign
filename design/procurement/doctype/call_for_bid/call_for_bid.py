@@ -11,9 +11,9 @@ from frappe.model.document import Document
 class CallForBid(Document):
 	pass
 	def make_quotation(self):
-		if len(self.product)==0:
+		if not self.product and len(self.product)==0:
 			frappe.throw("Please enter the product")
-		if len(self.supplier)==0:
+		if not self.supplier and len(self.supplier)==0:
 			frappe.throw("Please specify the supplier")
 		for s in self.supplier:
 			product=[]

@@ -28,6 +28,7 @@ class CallForBid(Document):
 			quote = {
 					"doctype":"Supplier Quotation",
 					"supplier":s.supplier,
+					"call_for_bid":self.name,
 					"transaction_date":self.date,
 					"items":product
 				}

@@ -20,8 +20,8 @@ class CallForBid(Document):
 			for p in self.product:
 				p.append({
 					"doctype":"Supplier Quotation Item",
-					"item_code":p.item,
-					"qty":cstr(p.qty)
+					"item_code":cstr(p.item),
+					"qty":flt(p.qty)
 				})
 			quote = {
 					"doctype":"Supplier Quotation",

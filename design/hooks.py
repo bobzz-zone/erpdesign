@@ -70,13 +70,13 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+ 	"Supplier Quotation": {
+ 		"on_update": "design.procurement.doctype.call_for_bid.call_for_bid.submit_quotation",
+ 		"on_cancel": "design.procurement.doctype.call_for_bid.call_for_bid.cancel_quotation",
+ 		"on_trash": "design.procurement.doctype.call_for_bid.call_for_bid.trash_quotation"
+	}
+ }
 
 # Scheduled Tasks
 # ---------------

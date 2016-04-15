@@ -21,7 +21,7 @@ class CallForBid(Document):
 				p.append({
 					"doctype":"Supplier Quotation Item",
 					"item_code":p.item,
-					"qty":p.qty
+					"qty":cint(p.qty)
 				})
 			quote = {
 					"doctype":"Supplier Quotation",

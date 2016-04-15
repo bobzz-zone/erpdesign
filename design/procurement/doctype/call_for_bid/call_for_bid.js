@@ -6,3 +6,5 @@ frappe.ui.form.on('Call For Bid', {
 
 	}
 });
+cur_frm.add_fetch("item_code","item_name","item_name");
+cur_frm.add_fetch("data_transaksi","stock_uom","uom");

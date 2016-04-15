@@ -27,6 +27,6 @@ class CallForBid(Document):
 					"doctype":"Supplier Quotation",
 					"transaction_date":self.date
 				}
-			quote.append(product)
+			quote.update(product)
 			row=frappe.get_doc(quote)
 			row.insert(ignore_permissions=True)

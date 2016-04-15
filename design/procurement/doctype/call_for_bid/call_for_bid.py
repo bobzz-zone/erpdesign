@@ -15,13 +15,15 @@ class CallForBid(Document):
 			frappe.throw("Please enter the product")
 		if not self.supplier or len(self.supplier)==0:
 			frappe.throw("Please specify the supplier")
+		created=""
 		for s in self.supplier:
 			product=[]
 			for p in self.product:
 				product.append({
 					"doctype":"Supplier Quotation Item",
-					"item_code":cstr(p.item),
-					"qty":flt(p.qty)
+					"item_code":p.item,
+					"qty":flt(p.qty),
+					"warehouse":p.warehouse
 				})
 			quote = {
 					"doctype":"Supplier Quotation",
@@ -31,3 +33,6 @@ class CallForBid(Document):
 			#quote.extend(product)
 			row=frappe.get_doc(quote)
 			row.insert(ignore_permissions=True)
+			s.quotation=row.name
+			created = created + row.name
+		msgprint("Quotation Created "+created)

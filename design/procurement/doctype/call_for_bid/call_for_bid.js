@@ -8,3 +8,4 @@ frappe.ui.form.on('Call For Bid', {
 });
 cur_frm.add_fetch("item","item_name","item_name");
 cur_frm.add_fetch("item","stock_uom","uom");
+cur_frm.add_fetch("item","default_warehouse","warehouse");

@@ -25,8 +25,9 @@ class CallForBid(Document):
 				})
 			quote = {
 					"doctype":"Supplier Quotation",
-					"transaction_date":self.date
+					"transaction_date":self.date,
+					"items":product
 				}
-			quote.extend(product)
+			#quote.extend(product)
 			row=frappe.get_doc(quote)
 			row.insert(ignore_permissions=True)

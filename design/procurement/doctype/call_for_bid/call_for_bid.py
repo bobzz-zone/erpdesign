@@ -18,7 +18,7 @@ class CallForBid(Document):
 		for s in self.supplier:
 			product=[]
 			for p in self.product:
-				p.append({
+				product.append({
 					"doctype":"Supplier Quotation Item",
 					"item_code":cstr(p.item),
 					"qty":flt(p.qty)

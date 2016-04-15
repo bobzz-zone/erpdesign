@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import db,throw,msgprint
-from frappe.utils import flt,cint
+from frappe.utils import flt,cint,cstr
 from frappe.model.document import Document
 
 
@@ -21,7 +21,7 @@ class CallForBid(Document):
 				p.append({
 					"doctype":"Supplier Quotation Item",
 					"item_code":p.item,
-					"qty":cint(p.qty)
+					"qty":cstr(p.qty)
 				})
 			quote = {
 					"doctype":"Supplier Quotation",

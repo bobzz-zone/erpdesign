@@ -49,9 +49,9 @@ cur_frm.cscript.best = function(doc){
 			}
 		**/
 		if (best==""){
-			frappe.throw("Data is Incomplete")
+			frappe.throw("Data is Incomplete");
 		}else{
-			frappe.set_route("Form", "Supplier Quotation",best)
+			frappe.set_route("Form", "Supplier Quotation",best);
 		}
 		
 }

@@ -9,13 +9,13 @@ frappe.ui.form.on('Call For Bid', {
 cur_frm.add_fetch("item","item_name","item_name");
 cur_frm.add_fetch("item","stock_uom","uom");
 cur_frm.add_fetch("item","default_warehouse","warehouse");
-cur_frm.cscript.view = function(){
+cur_frm.cscript.view = function(doc){
 	frappe.route_options = {"Supplier Quotation.call_for_bid": doc.name};
 	frappe.set_route("List", "Supplier Quotation");
 }
 
 
-cur_frm.cscript.best = function(){
+cur_frm.cscript.best = function(doc){
 		var best="";
 		var value=0;
 		$.each(doc.supplier,function(i,data){

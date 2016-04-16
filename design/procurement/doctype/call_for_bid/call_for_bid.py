@@ -43,26 +43,7 @@ class CallForBid(Document):
 			msgprint("Nothing is Created")
 		else:
 			msgprint("Quotation Created "+created)
-	def go_to_list(self):
-		frappe.route_options = {
-						"Supplier Quotation.call_for_bid": self.name
-					}
-		frappe.set_route("List", "Supplier Quotation")
-	def go_to_best(self):
-		best=""
-		value=0
-		for s in self.supplier:
-			if s.received==1:
-				if value==0:
-					value=s.price
-					best=s.quotation
-				elif value>s.price:
-					value=s.price
-					best=s.quotation
-		if best=="":
-			frappe.throw("Data is Incomplete")
-		else:
-			frappe.set_route("Form", "Supplier Quotation",best)
+
 
 def submit_quotation(doc,method):
 	if doc.call_for_bid:

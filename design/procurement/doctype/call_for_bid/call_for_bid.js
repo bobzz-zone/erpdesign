@@ -27,12 +27,12 @@ cur_frm.cscript.best = function(doc){
 		var data = doc.supplier;
 		for (var i=0;i<data.length;i++){
 			if (data.received==1){
-				if value==0:
-					value=data.price
-					best=data.quotation
+				if (value==0){
+					value=data.price;
+					best=data.quotation;
 				}else if (value>data.price){
-					value=data.price
-					best=data.quotation
+					value=data.price;
+					best=data.quotation;
 				}
 		if (best==""){
 			frappe.throw("Data is Incomplete")

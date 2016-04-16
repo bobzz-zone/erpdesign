@@ -36,6 +36,7 @@ class CallForBid(Document):
 				#quote.extend(product)
 				row=frappe.get_doc(quote)
 				row.insert(ignore_permissions=True)
+				frappe.db.sql("""update `tabCall For Bid Supplier` set created=1,quotation="{}"  where name="{}"; """.format(row.name,s.name))
 				s.quotation=row.name
 				s.created=1
 				created = created + row.name

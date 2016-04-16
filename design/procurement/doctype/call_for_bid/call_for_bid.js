@@ -9,17 +9,11 @@ frappe.ui.form.on('Call For Bid', {
 cur_frm.add_fetch("item","item_name","item_name");
 cur_frm.add_fetch("item","stock_uom","uom");
 cur_frm.add_fetch("item","default_warehouse","warehouse");
-cur_frm.cscript.view = function(doc){
-	frappe.route_options = {"Supplier Quotation.call_for_bid": self.name};
+cur_frm.cscript.view = function(){
+	frappe.route_options = {"Supplier Quotation.call_for_bid": doc.name};
 	frappe.set_route("List", "Supplier Quotation");
 }
 
-cur_frm.set_query("item_code", "items", function() {		
-	return{
-		query: "erpnext.controllers.queries.item_query",
-		filters: { 'is_purchase_item': 1 }
-	}
-});
 
 cur_frm.cscript.best = function(){
 		var best="";

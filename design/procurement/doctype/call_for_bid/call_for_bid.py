@@ -70,9 +70,9 @@ def submit_quotation(doc,method):
 
 def cancel_quotation(doc,method):
 	if doc.call_for_bid:
-		frappe.db.sql("""update `tabCall For Bid Supplier` set received=0,created=0 , price=0 where quotation="{}"; """.format(doc.name))
+		frappe.db.sql("""update `tabCall For Bid Supplier` set received=0,created=0,quotation="" , price=0 where quotation="{}"; """.format(doc.name))
 
 def trash_quotation(doc,method):
 	if doc.call_for_bid:
-		frappe.db.sql("""update `tabCall For Bid Supplier` set received=0,created=0 , price=0 where quotation="{}"; """.format(doc.name))
+		frappe.db.sql("""update `tabCall For Bid Supplier` set received=0,created=0,quotation="" , price=0 where quotation="{}"; """.format(doc.name))
 		

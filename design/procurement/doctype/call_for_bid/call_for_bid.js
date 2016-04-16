@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Call For Bid', {
 	refresh: function(frm) {
-		
+		refresh_field();
 	}
 });
 cur_frm.add_fetch("item","item_name","item_name");

@@ -3,7 +3,12 @@
 
 frappe.ui.form.on('Call For Bid', {
 	refresh: function(frm) {
-
+		frm.set_query("item", "items", function() {
+			return{
+				query: "erpnext.controllers.queries.item_query",
+				filters: { 'is_purchase_item': 1 }
+			}
+		});
 	}
 });
 cur_frm.add_fetch("item","item_name","item_name");
@@ -14,12 +19,7 @@ cur_frm.cscript.view = function(doc){
 	frappe.set_route("List", "Supplier Quotation");
 }
 
-cur_frm.set_query("item", "items", function() {
-	return{
-		query: "erpnext.controllers.queries.item_query",
-		filters: { 'is_purchase_item': 1 }
-	}
-});
+
 
 cur_frm.cscript.best = function(doc){
 		var best="";

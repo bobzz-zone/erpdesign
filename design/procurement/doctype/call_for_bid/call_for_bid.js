@@ -14,6 +14,12 @@ cur_frm.cscript.view = function(doc){
 	frappe.set_route("List", "Supplier Quotation");
 }
 
+cur_frm.set_query("item", "items", function() {
+	return{
+		query: "erpnext.controllers.queries.item_query",
+		filters: { 'is_purchase_item': 1 }
+	}
+});
 
 cur_frm.cscript.best = function(doc){
 		var best="";

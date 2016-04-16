@@ -72,7 +72,7 @@ app_license = "MIT"
 
 doc_events = {
  	"Supplier Quotation": {
- 		"on_update": "design.procurement.doctype.call_for_bid.call_for_bid.submit_quotation",
+ 		"on_submit": "design.procurement.doctype.call_for_bid.call_for_bid.submit_quotation",
  		"on_cancel": "design.procurement.doctype.call_for_bid.call_for_bid.cancel_quotation",
  		"on_trash": "design.procurement.doctype.call_for_bid.call_for_bid.trash_quotation"
 	}

@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Call For Bid', {
 	refresh: function(frm) {
-		frm.set_query("item", "items", function() {
+		this.frm.set_query("item", "items", function() {
 			return{
 				query: "erpnext.controllers.queries.item_query",
 				filters: { 'is_purchase_item': 1 }

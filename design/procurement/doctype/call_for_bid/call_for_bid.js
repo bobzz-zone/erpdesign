@@ -21,7 +21,7 @@ cur_frm.set_query("item_code", "items", function() {
 	}
 });
 
-cur_frm.cscript.best = function(doc){
+cur_frm.cscript.best = function(){
 		var best="";
 		var value=0;
 		$.each(doc.supplier,function(i,data){

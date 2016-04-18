@@ -2,6 +2,7 @@ from frappe import _
 
 def get_data():
 	return [
+		{
 		"label":"Documents",
 		"items":[
 			{
@@ -21,5 +22,5 @@ def get_data():
 				"name":"Purchase Order"
 			}
 
-		]
+		}
 	]

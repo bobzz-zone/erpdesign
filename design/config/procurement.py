@@ -7,6 +7,20 @@ def get_data():
 		"items":[
 			{
 				"type":"doctype",
+				"name":"Supplier"
+			},
+			{
+				"type":"doctype",
+				"name":"Material Request"
+			},
+			{
+				"type":"doctype",
+				"name":"Supplier Quotation"
+			},{
+				"type":"doctype",
+				"name":"Purchase Order"
+			},{
+				"type":"doctype",
 				"name":"Call For Bid"
 			},{
 				"type":"doctype",
@@ -17,9 +31,6 @@ def get_data():
 			},{
 				"type":"doctype",
 				"name":"Supplier evaluation form"
-			},{
-				"type":"doctype",
-				"name":"Purchase Order"
 			}
 		]
 		}

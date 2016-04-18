@@ -23,7 +23,14 @@ def get_data():
 				},{
 					"type":"doctype",
 					"name":"Project Budget From"
+				},{
+					"type": "report",
+					"route": "Gantt/Task",
+					"doctype": "Task",
+					"name": "Gantt Chart",
+					"description": _("Gantt chart of all tasks.")
 				}
+				
 			]
 		}
 	]

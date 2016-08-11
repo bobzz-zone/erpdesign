@@ -21,7 +21,7 @@ def get_data():
 				}
 				,{
 					"type":"doctype",
-					"name":"Design order"
+					"name":"Design Order"
 				},{
 					"type":"doctype",
 					"name":"Drawing Submittal Form"
